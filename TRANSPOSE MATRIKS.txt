@@ -1,0 +1,25 @@
+class Matrix:
+    def _init_(self, rows, cols):
+        self.rows = rows
+        self.cols = cols
+        self.data = [[0] * cols for _ in range(rows)]
+
+    def _str_(self):
+        matrix_str = ""
+        for row in self.data:
+            matrix_str += " ".join(str(element) for element in row) + "\n"
+        return matrix_str
+
+    def set_data(self, data):
+        if len(data) != self.rows or len(data[0]) != self.cols:
+            raise ValueError("Ukuran data tidak sesuai dengan matriks")
+        self.data = data
+
+    def get_data(self):
+        return self.data
+
+    def transpose(self):
+        transposed_data = [[self.data[j][i] for j in range(self.rows)] for i in range(self.cols)]
+        self.data = transposed_data
+        self.rows, self.cols = self.cols, self.rows
+
